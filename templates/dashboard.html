@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            color: white;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .logout-btn {
+            background-color: #ff4b5c;
+            border: none;
+            padding: 8px 14px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #e84142;
+        }
+
+        /* Content */
+        .container {
+            padding: 30px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            width: 250px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        .card h3 {
+            margin: 0;
+            color: #6a11cb;
+        }
+
+        .card p {
+            color: #555;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>My Dashboard</h2>
+
+        <div class="nav-links">
+            <a href="{{url_for('withdraw')}}">Withdrawals</a>
+            <a href="{{url_for('deposit')}}">Deposits</a>
+            <a href="#">Statements</a>
+            <a href="{{url_for('balance')}}">Balance</a>
+        </div>
+        <i style="background-color: yellowgreen;">{{request.cookies.get('user')}}</i>
+
+        <form action="#" method="POST">
+            <button class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <!-- Content -->
+    <!-- <div class="container">
+        <h1>Welcome 👋</h1>
+        <p>Select an option from the navigation bar.</p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Withdrawals</h3>
+                <p>Manage and withdraw your funds securely.</p>
+            </div>
+
+            <div class="card">
+                <h3>Deposits</h3>
+                <p>Add money to your account easily.</p>
+            </div>
+
+            <div class="card">
+                <h3>Statements</h3>
+                <p>View your transaction history.</p>
+            </div>
+        </div>
+    </div> -->
+
+
+</body>
+
+</html>
