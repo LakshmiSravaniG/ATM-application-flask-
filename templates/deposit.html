@@ -1,113 +1,36 @@
-<!DOCTYPE html>
+{%extends 'dashboard.html'%}
+{%block title %}<title>Deposit</title>{%endblock%}
+{%block content%}
+<center>
+    <h2>Update Amount</h2>
+    <form id="amountForm">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+        <button type="submit">Send</button>
+    </form>
+</center>
+<p id="responseMsg"></p>
 
-<html lang="en">
+<script>
+    document.getElementById("amountForm").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-<head>
-    <meta charset="UTF-8">
-    <title>Deposit Amount</title>
+        const amount = document.getElementById("amount").value;
 
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100vh;
-            margin: 0;
-        }
-
-        h2 {
-            color: white;
-        }
-
-        form {
-            background: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        label {
-            font-size: 14px;
-        }
-
-        input {
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        input:focus {
-            border-color: #6a11cb;
-            outline: none;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            background: linear-gradient(90deg, #6a11cb, #2575fc);
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        #responseMsg {
-            text-align: center;
-            color: white;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-    </style>
-
-
-</head>
-
-<body>
-
-
-    <center>
-        <h2>Deposit Amount</h2>
-        <form id="amountForm">
-            <label for="amount">Amount:</label>
-            <input type="number" id="amount" name="amount" required>
-            <button type="submit">Send</button>
-        </form>
-    </center>
-
-    <p id="responseMsg"></p>
-
-    <script>
-        document.getElementById("amountForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const amount = document.getElementById("amount").value;
-
-            fetch("{{url_for('deposit')}}", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ amount: amount })
+        fetch("{{url_for('deposit')}}", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ amount: amount })
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("responseMsg").innerText = "Success: " + JSON.stringify(data);
             })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("responseMsg").innerText = "Success: " + JSON.stringify(data);
-                })
-                .catch(error => {
-                    document.getElementById("responseMsg").innerText = "Error: " + error;
-                });
-        });
-    </script>
-
-
-</body>
-
-</html>
+            .catch(error => {
+                document.getElementById("responseMsg").innerText = "Error: " + error;
+            });
+    });
+</script>
+{%endblock%}

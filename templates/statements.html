@@ -1,0 +1,46 @@
+{% extends 'dashboard.html' %}
+
+{% block title %}
+<title>Statements</title>
+{% endblock %}
+
+{% block content %}
+<center>
+    <div class="container">
+        <h2>Transaction Statements</h2>
+
+        <h3>Deposit</h3>
+        <table border="1">
+            <tr>
+                <th>Amount</th>
+                <th>Date & Time</th>
+            </tr>
+
+            {% for i in deposit_userstatements %}
+            <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br><br>
+
+        <h3>Withdraw</h3>
+        <table border="1">
+            <tr>
+                <th>Amount</th>
+                <th>Date & Time</th>
+            </tr>
+
+            {% for i in withdraw_userstatements %}
+            <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</center>
+{% endblock %}

@@ -30,4 +30,20 @@
     <center>
         <label>User Balance Amount: {{balance_amount}}</label>
     </center>
+
+    {#
+    {% if balance_amount>500 %}
+    <p>Good</p>
+    {% elif balance_amount==500 %}
+    <p> medium </p>
+    {% else %}
+    <p>low</p>
+    {% endif %}
+    #}
+
+
+    {% for i in users %}
+    <h1> User Name : {{i}}</h1>
+    <h1> User Amount : {{users[i]['Amount']}}</h1>
+    {% endfor %}
 </body>

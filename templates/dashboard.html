@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    {% block title %}<title>Dashboard</title>{% endblock %}
 
     <style>
         body {
@@ -101,16 +101,14 @@
         <div class="nav-links">
             <a href="{{url_for('withdraw')}}">Withdrawals</a>
             <a href="{{url_for('deposit')}}">Deposits</a>
-            <a href="#">Statements</a>
+            <a href="{{url_for('userstatements')}}">Statements</a>
             <a href="{{url_for('balance')}}">Balance</a>
         </div>
         <i style="background-color: yellowgreen;">{{request.cookies.get('user')}}</i>
 
-        <form action="#" method="POST">
-            <button class="logout-btn">Logout</button>
-        </form>
+        <a href="{{url_for('logout')}}"><button class="logout-btn">Logout</button></a>
     </div>
-
+    {% block content %} {% endblock %}
     <!-- Content -->
     <!-- <div class="container">
         <h1>Welcome 👋</h1>
