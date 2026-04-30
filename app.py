@@ -143,7 +143,7 @@ def userstatements():
 @app.route('/logout')
 def logout():
     if request.cookies.get('user'):
-        resp = redirect(url_for('login'))
+        resp = redirect(url_for('home'))
         resp.delete_cookie('user')   # cleaner way to remove cookie
         return resp
     else:
